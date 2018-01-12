@@ -1,0 +1,62 @@
+[core]
+    pager = less -FRXSM
+    editor = subl -w
+    compression = 9
+    whitespace = blank-at-eol,space-before-tab,blank-at-eof,-cr-at-eol
+    eol = lf 
+    excludesfile = ~/.gitignore
+[user]
+    email = REPLACEME 
+    name = REPLACEME
+[color]
+    ui = auto
+[log]
+    date = local
+[difftool]
+    prompt = false
+[diff]
+    renameLimit = 0
+    renames = copy
+    algorithm = histogram
+    tool = vimdiff 
+[mergetool]
+    keepBackup = false
+    keepTemporaries = false
+    prompt = false
+[rerere]
+    enabled = true
+[gc]
+    pruneExpire = 6 months ago
+    aggressiveWindow = 20
+[merge]
+    log = true
+    summary = true
+    conflictstyle = diff3
+    tool = vimdiff
+[pack]
+    window = 20
+    threads = 0
+[branch]
+    autosetupmerge = true
+[push]
+    default = nothing
+[rebase]
+    stat = true
+    autosquash = true
+[alias]
+    # Log of commits with pretty graph (optional: give one or more branch names)
+    lg = "log --pretty=format:'%C(yellow)%h%Creset %s %Cblue%d%Creset' --graph"
+
+    # Pull in changes from the remote that won't conflict with your local changes.
+    ffpull = pull --ff-only
+
+    # Commit everything in the current topic branch as a Work In Progress checkpoint
+    wip = sh -c 'git add -A . && git commit -m "WIP"'
+    br = for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short)'
+    co = checkout
+    s = status
+    dt = difftool
+    mt = mergetool
+    b = branch
+    dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+
