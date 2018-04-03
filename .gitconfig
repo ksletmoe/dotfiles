@@ -1,12 +1,12 @@
 [core]
     pager = less -FRXSM
-    editor = subl -w
+    editor = vim
     compression = 9
     whitespace = blank-at-eol,space-before-tab,blank-at-eof,-cr-at-eol
-    eol = lf 
+    eol = lf
     excludesfile = ~/.gitignore
 [user]
-    email = REPLACEME 
+    email = REPLACEME
     name = REPLACEME
 [color]
     ui = auto
@@ -18,7 +18,7 @@
     renameLimit = 0
     renames = copy
     algorithm = histogram
-    tool = vimdiff 
+    tool = vimdiff
 [mergetool]
     keepBackup = false
     keepTemporaries = false
