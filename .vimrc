@@ -17,6 +17,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/syntastic'
 Plug 'chriskempson/base16-vim'
+Plug 'jszakmeister/vim-togglecursor'
 
 call plug#end()
 
@@ -45,6 +46,10 @@ let g:syntastic_python_checkers = ['flake8']
 
 
 let g:lightline = { 'colorscheme': 'materia', }
+
+
+let g:togglecursor_leave = 'blinking_line'
+let g:togglecursor_replace = 'blinking_underline'
 
 
 fun! <SID>StripTrailingWhitespaces()
