@@ -56,11 +56,3 @@ function set_ps1() {
 
 set_ps1
 
-# pyenv
-
-if [ -d "$HOME/.pyenv" ]; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    eval "$(pyenv init -)"
-    eval "$(pyenv global 3.6.1)"
-fi
-
