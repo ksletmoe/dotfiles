@@ -69,6 +69,7 @@ endfun
 "
 " misc settings
 "
+set nocompatible
 set expandtab
 set encoding=utf-8
 set shiftwidth=4
@@ -99,8 +100,16 @@ au BufRead,BufNewFile * :call <SID>SetColorColumn()
 
 " easier escape
 inoremap jk <esc>
+cnoremap jk <esc>
 " make myself use it
 inoremap <esc> <nop>
+cnoremap <esc> <nop>
+" arrow keys are borked in insert mode due to the above mapping, so disable them altogether
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
 
 " undo diff hunk
 nnoremap <Leader>hr <Plug>GitGutterUndoHunk
