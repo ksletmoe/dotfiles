@@ -1,6 +1,6 @@
-autocmd!
-
-" Plugins
+"
+"Plugins
+"
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
       \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -33,7 +33,9 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 
+"
 " Syntastic config
+"
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -64,7 +66,9 @@ fun! <SID>SetColorColumn()
 endfun
 
 
+"
 " misc settings
+"
 set expandtab
 set encoding=utf-8
 set shiftwidth=4
@@ -78,6 +82,9 @@ set textwidth=100
 set hlsearch
 set incsearch
 
+let mapleader = " "
+let maplocalleader = "\\"
+
 au BufWritePre * :call <SID>StripTrailingWhitespaces()
 au BufRead,BufNewFile *.template set filetype=yaml
 au FileType rb setlocal shiftwidth=2 softtabstop=2
@@ -86,8 +93,27 @@ au FileType py setlocal textwidth=79
 au BufRead,BufNewFile * :call <SID>SetColorColumn()
 
 
+"
 " mappings
-nmap <Leader>hr <Plug>GitGutterUndoHunk
-nmap <Leader><space> :noh<cr>
-nmap <Leader>nu :set nu!<cr>
+"
+
+" easier escape
+inoremap jk <esc>
+" make myself use it
+inoremap <esc> <nop>
+
+" undo diff hunk
+nnoremap <Leader>hr <Plug>GitGutterUndoHunk
+
+" remove search highlights
+nnoremap <Leader><space> :noh<cr>
+
+" toggle line numbers
+nnoremap <Leader>nu :set nu!<cr>
+
+" edit .vimrc in new window
+nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
+
+" source .vimrc
+nnoremap <Leader>sv :source $MYVIMRC<cr>
 
