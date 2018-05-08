@@ -34,6 +34,7 @@ install_dotfile ".bash_profile" "${HOME}/.bash_profile"
 install_dotfile ".vimrc" "${HOME}/.vimrc"
 
 install_dotfile "rc.conf" "${HOME}/.config/ranger/rc.conf"
+install_dotfile "scope.sh" "${HOME}/.config/ranger/scope.sh"
 
 install_dotfile ".tmux.conf" "${HOME}/.tmux.conf"
 
