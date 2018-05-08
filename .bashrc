@@ -1,6 +1,8 @@
 # PATH shenanigans
 export PATH="$PATH":~/bin
 
+export PLATFORM=$(uname -s)
+
 # aliases
 alias ll="ls -al"
 alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
