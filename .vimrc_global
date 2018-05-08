@@ -1,0 +1,40 @@
+" Settings that pertain whether I'm in console vim, ideavim, gvim, etc.
+
+"
+" misc settings
+"
+set nocompatible
+set expandtab
+set encoding=utf-8
+set shiftwidth=4
+set softtabstop=4
+set number
+set backspace=indent,eol,start
+set laststatus=2
+set noshowmode
+set cursorline
+set hlsearch
+set incsearch
+
+let mapleader = " "
+let maplocalleader = "\\"
+
+"
+" mappings
+"
+
+" easier escape
+inoremap jk <esc>
+cnoremap jk <esc>
+" make myself use it
+inoremap <esc> <nop>
+cnoremap <esc> <nop>
+" arrow keys are borked in insert mode due to the above mapping, so disable them altogether
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" remove search highlights
+nnoremap <Leader><space> :noh<cr>
+

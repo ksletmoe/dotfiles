@@ -21,6 +21,9 @@ Plug 'jszakmeister/vim-togglecursor'
 
 call plug#end()
 
+" pull in my 'global' vim settings
+source $HOME/.vimrc_global
+
 
 if !has('gui_running')
     set t_Co=256
@@ -69,22 +72,7 @@ endfun
 "
 " misc settings
 "
-set nocompatible
-set expandtab
-set encoding=utf-8
-set shiftwidth=4
-set softtabstop=4
-set number
-set backspace=indent,eol,start
-set laststatus=2
-set noshowmode
-set cursorline
 set textwidth=100
-set hlsearch
-set incsearch
-
-let mapleader = " "
-let maplocalleader = "\\"
 
 au BufWritePre * :call <SID>StripTrailingWhitespaces()
 au BufRead,BufNewFile *.template set filetype=yaml
@@ -98,24 +86,8 @@ au BufRead,BufNewFile * :call <SID>SetColorColumn()
 " mappings
 "
 
-" easier escape
-inoremap jk <esc>
-cnoremap jk <esc>
-" make myself use it
-inoremap <esc> <nop>
-cnoremap <esc> <nop>
-" arrow keys are borked in insert mode due to the above mapping, so disable them altogether
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-
-
 " undo diff hunk
 nnoremap <Leader>hr <Plug>GitGutterUndoHunk
-
-" remove search highlights
-nnoremap <Leader><space> :noh<cr>
 
 " toggle line numbers
 nnoremap <Leader>nu :set nu!<cr>
