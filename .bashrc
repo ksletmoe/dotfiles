@@ -3,6 +3,9 @@ export PATH="$PATH":~/bin
 
 # aliases
 alias ll="ls -al"
+alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+alias zzz="pmset sleepnow"
+
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
       . $(brew --prefix)/etc/bash_completion
