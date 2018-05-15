@@ -1,2 +1,4 @@
-source ~/.vimrc_global
+if filereadable(expand("~/.vimrc_global"))
+    source ~/.vimrc_global
+endif
 

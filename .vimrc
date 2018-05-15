@@ -22,7 +22,9 @@ Plug 'jszakmeister/vim-togglecursor'
 call plug#end()
 
 " pull in my 'global' vim settings
-source $HOME/.vimrc_global
+if filereadable(expand("~/.vimrc_global"))
+    source $HOME/.vimrc_global
+endif
 
 
 if !has('gui_running')

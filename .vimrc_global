@@ -44,5 +44,9 @@ nnoremap <Leader><space> :noh<cr>
 " PEP-263 encoding string for UTF-8
 iabbrev encutf8 # -*- coding: utf-8 -*-
 
-source ~/.vim_alias_gitignore
+if filereadable(expand("~/.vim_alias_gitignore"))
+    source ~/.vim_alias_gitignore
+endif
+
+
 
