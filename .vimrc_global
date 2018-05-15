@@ -34,6 +34,9 @@ cnoremap <esc> <nop>
 " remove search highlights
 nnoremap <Leader><space> :noh<cr>
 
+" everything inside the parens
+:onoremap p i(
+
 "
 " Abbreviations
 "
