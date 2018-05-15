@@ -34,6 +34,7 @@ install_dotfile ".bash_profile" "${HOME}/.bash_profile"
 install_dotfile ".vimrc" "${HOME}/.vimrc"
 install_dotfile ".vimrc_global" "${HOME}/.vimrc_global"
 install_dotfile ".ideavimrc" "${HOME}/.ideavimrc"
+install_dotfile ".vim_alias_gitignore" "${HOME}/.vim_alias_gitignore"
 
 install_dotfile "rc.conf" "${HOME}/.config/ranger/rc.conf"
 install_dotfile "scope.sh" "${HOME}/.config/ranger/scope.sh"

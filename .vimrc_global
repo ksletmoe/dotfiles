@@ -29,12 +29,16 @@ cnoremap jk <esc>
 " make myself use it
 inoremap <esc> <nop>
 cnoremap <esc> <nop>
-" arrow keys are borked in insert mode due to the above mapping, so disable them altogether
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
 
 " remove search highlights
 nnoremap <Leader><space> :noh<cr>
 
+
+"
+" Abbreviations
+"
+
+" PEP-263 encoding string for UTF-8
+iabbrev encutf8 # -*- coding: utf-8 -*-
+
+source ~/.vim_alias_gitignore
