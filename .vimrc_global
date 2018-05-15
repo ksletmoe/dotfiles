@@ -15,6 +15,7 @@ set noshowmode
 set cursorline
 set hlsearch
 set incsearch
+set nowrap
 
 let mapleader = " "
 let maplocalleader = "\\"
@@ -33,7 +34,6 @@ cnoremap <esc> <nop>
 " remove search highlights
 nnoremap <Leader><space> :noh<cr>
 
-
 "
 " Abbreviations
 "
@@ -42,3 +42,4 @@ nnoremap <Leader><space> :noh<cr>
 iabbrev encutf8 # -*- coding: utf-8 -*-
 
 source ~/.vim_alias_gitignore
+

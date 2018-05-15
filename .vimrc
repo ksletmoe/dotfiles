@@ -74,12 +74,23 @@ endfun
 "
 set textwidth=100
 
-au BufWritePre * :call <SID>StripTrailingWhitespaces()
-au BufRead,BufNewFile *.template set filetype=yaml
-au FileType rb setlocal shiftwidth=2 softtabstop=2
-au FileType yaml setlocal shiftwidth=2 softtabstop=2
-au FileType py setlocal textwidth=79
-au BufRead,BufNewFile * :call <SID>SetColorColumn()
+augroup ksletmoe_general
+    autocmd!
+    autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+    autocmd BufRead,BufNewFile * :call <SID>SetColorColumn()
+augroup END
+
+augroup filetype_overrides
+    autocmd!
+    autocmd BufRead,BufNewFile *.template set filetype=yaml
+augroup END
+
+augroup shiftwidth_settings
+    autocmd!
+    autocmd FileType rb setlocal shiftwidth=2 softtabstop=2
+    autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2
+    autocmd FileType py setlocal textwidth=79
+augroup END
 
 
 "
