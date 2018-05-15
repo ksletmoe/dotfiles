@@ -84,7 +84,7 @@ augroup END
 
 augroup filetype_overrides
     autocmd!
-    autocmd BufRead,BufNewFile *.template set filetype=yaml
+    autocmd BufRead,BufNewFile *.template setlocal filetype=yaml
 augroup END
 
 augroup shiftwidth_settings
