@@ -5,12 +5,16 @@ export PLATFORM=$(uname -s)
 
 # aliases
 alias ll="ls -al"
-alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-alias zzz="pmset sleepnow"
 
+if [ "$PLATFORM" = "Darwin" ]; then
+    alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+    alias zzz="pmset sleepnow"
+fi
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-      . $(brew --prefix)/etc/bash_completion
+if [ "$PLATFORM" = "Darwin" ]; then
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+          . $(brew --prefix)/etc/bash_completion
+    fi
 fi
 
 # to hold the local config I don't want to check into my dotfiles git repo (work stuff, mostly)
