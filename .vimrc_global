@@ -27,9 +27,6 @@ let maplocalleader = "\\"
 " easier escape
 inoremap jk <esc>
 cnoremap jk <esc>
-" make myself use it
-inoremap <esc> <nop>
-cnoremap <esc> <nop>
 
 " remove search highlights
 nnoremap <Leader><space> :noh<cr>
