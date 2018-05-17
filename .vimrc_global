@@ -32,7 +32,13 @@ cnoremap jk <esc>
 nnoremap <Leader><space> :noh<cr>
 
 " everything inside the parens
-:onoremap p i(
+onoremap p i(
+
+" insert newline below (without entering insert mode)
+nnoremap <Leader>o o<esc>
+
+" insert newline above (without entering insert mode)
+nnoremap <Leader>O O<esc>
 
 "
 " Abbreviations
