@@ -17,6 +17,12 @@ if [ "$PLATFORM" = "Darwin" ]; then
     fi
 fi
 
+if [ "$PLATFORM" = "Darwin" ]; then
+    if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
+      . `brew --prefix`/etc/bash_completion.d/git-completion.bash
+    fi
+fi
+
 # to hold the local config I don't want to check into my dotfiles git repo (work stuff, mostly)
 if [ -f "$HOME/.bashrc_local" ]; then
     . $HOME/.bashrc_local
