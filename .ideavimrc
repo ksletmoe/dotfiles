@@ -2,3 +2,6 @@ if filereadable(expand("~/.vimrc_global"))
     source ~/.vimrc_global
 endif
 
+
+nnoremap <Leader>bk :action Tool_External Tools_Black<cr>
+

@@ -18,6 +18,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/syntastic'
 Plug 'chriskempson/base16-vim'
 Plug 'jszakmeister/vim-togglecursor'
+Plug 'ambv/black'
 
 call plug#end()
 
@@ -58,6 +59,7 @@ let g:lightline = { 'colorscheme': 'materia', }
 let g:togglecursor_leave = 'blinking_line'
 let g:togglecursor_replace = 'blinking_underline'
 
+let g:black_linelength = 79
 
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -111,3 +113,5 @@ nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 " source .vimrc
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
+" run black on file
+nnoremap <Leader>bk :Black<cr>
