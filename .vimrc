@@ -7,7 +7,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
@@ -19,6 +18,7 @@ Plug 'scrooloose/syntastic'
 Plug 'chriskempson/base16-vim'
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'ambv/black'
+Plug 'MattesGroeger/vim-bookmarks'
 
 call plug#end()
 
