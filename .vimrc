@@ -102,6 +102,7 @@ augroup END
 "
 " better exit for command mode
 cnoremap jk <C-c>
+vnoremap jk <esc>
 
 " undo diff hunk
 nnoremap <Leader>hr <Plug>GitGutterUndoHunk
