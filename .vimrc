@@ -19,6 +19,9 @@ Plug 'chriskempson/base16-vim'
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'ambv/black'
 Plug 'MattesGroeger/vim-bookmarks'
+Plug 'tpope/vim-jdaddy'
+Plug 'lifepillar/vim-mucomplete'
+Plug 'davidhalter/jedi-vim'
 
 call plug#end()
 
@@ -37,6 +40,34 @@ if filereadable(expand("~/.vimrc_background"))
     let base16colorspace=256
     source ~/.vimrc_background
 endif
+
+
+" Completions
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
+
+"
+" Mucomplete config
+"
+set completeopt-=preview
+set completeopt+=longest,menu,menuone,noinsert,noselect
+
+set shortmess+=c
+set belloff+=ctrlg
+let g:mucomplete#enable_auto_at_startup = 1
+
+
+augroup omni_completion_setup
+    autocmd!
+    autocmd FileType c          set omnifunc=ccomplete#Complete
+    autocmd FileType python     set omnifunc=jedi#completions
+    autocmd FileType ruby       set omnifunc=rubycomplete#Complete
+    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType html       set omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType css        set omnifunc=csscomplete#CompleteCSS
+    autocmd FileType xml        set omnifunc=xmlcomplete#CompleteTags
+augroup END
 
 
 "
@@ -118,3 +149,16 @@ nnoremap <Leader>sv :source $MYVIMRC<cr>
 
 " run black on file
 nnoremap <Leader>bk :Black<cr>
+
+
+"
+" Abbreviations
+"
+
+" PEP-263 encoding string for UTF-8
+iabbrev encutf8 # -*- coding: utf-8 -*-
+
+if filereadable(expand("~/.vim_alias_gitignore"))
+    source ~/.vim_alias_gitignore
+endif
+

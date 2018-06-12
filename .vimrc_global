@@ -40,16 +40,3 @@ nnoremap <Leader>o o<esc>
 " insert newline above (without entering insert mode)
 nnoremap <Leader>O O<esc>
 
-"
-" Abbreviations
-"
-
-" PEP-263 encoding string for UTF-8
-iabbrev encutf8 # -*- coding: utf-8 -*-
-
-if filereadable(expand("~/.vim_alias_gitignore"))
-    source ~/.vim_alias_gitignore
-endif
-
-
-

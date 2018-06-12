@@ -7,8 +7,9 @@ if [ "$PLATFORM" = "Darwin" ]; then
                     bash-completion \
                     tmux \
                     ranger \
-                    macvim \
                     git \
+                    macvim \
+                    ctags \
                     jq \
                     highlight \
                     tree \
@@ -16,7 +17,6 @@ if [ "$PLATFORM" = "Darwin" ]; then
                     cmake \
                     go \
                     coreutils \
-                    cask \
                     hexedit \
                     htop \
                     watch \
@@ -27,7 +27,11 @@ if [ "$PLATFORM" = "Darwin" ]; then
                     pyenv \
                     pipenv \
                     node \
-                    ruby
+                    ruby \
+                    readline \
+                    sqlite3 \
+                    xz \
+                    zlib
 
     brew tap homebrew/cask
 
