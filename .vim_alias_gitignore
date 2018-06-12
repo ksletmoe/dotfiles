@@ -1,1 +1,0 @@
-iabbrev pyignore .idea<cr><cr>*.egg-info<cr>*.pyc<cr>build<cr>dist<cr>.coverage<cr>.pytest_cache

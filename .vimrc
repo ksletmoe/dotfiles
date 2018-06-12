@@ -157,8 +157,5 @@ nnoremap <Leader>bk :Black<cr>
 
 " PEP-263 encoding string for UTF-8
 iabbrev encutf8 # -*- coding: utf-8 -*-
-
-if filereadable(expand("~/.vim_alias_gitignore"))
-    source ~/.vim_alias_gitignore
-endif
+iabbrev pyignore .idea<cr><cr>*.egg-info<cr>*.pyc<cr>build<cr>dist<cr>.coverage<cr>.pytest_cache
 
