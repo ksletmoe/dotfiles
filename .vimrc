@@ -22,6 +22,7 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 'tpope/vim-jdaddy'
 Plug 'lifepillar/vim-mucomplete'
 Plug 'davidhalter/jedi-vim'
+Plug 'cespare/vim-toml'
 
 call plug#end()
 
