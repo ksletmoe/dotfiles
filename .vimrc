@@ -23,6 +23,13 @@ Plug 'tpope/vim-jdaddy'
 Plug 'lifepillar/vim-mucomplete'
 Plug 'davidhalter/jedi-vim'
 Plug 'cespare/vim-toml'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'easymotion/vim-easymotion'
+Plug 'vim-scripts/repeatable-motions.vim'
+Plug 'tpope/vim-unimpaired'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 call plug#end()
 
@@ -38,7 +45,7 @@ endif
 
 
 if filereadable(expand("~/.vimrc_background"))
-    let base16colorspace=256
+    let g:base16colorspace=256
     source ~/.vimrc_background
 endif
 
@@ -52,7 +59,7 @@ set omnifunc=syntaxcomplete#Complete
 " Mucomplete config
 "
 set completeopt-=preview
-set completeopt+=longest,menu,menuone,noinsert,noselect
+set completeopt+=menu,menuone,noinsert,noselect
 
 set shortmess+=c
 set belloff+=ctrlg
@@ -85,20 +92,22 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
 
 
+" lightline
 let g:lightline = { 'colorscheme': 'materia', }
 
 
 let g:togglecursor_leave = 'blinking_line'
 let g:togglecursor_replace = 'blinking_underline'
 
+" Black
 let g:black_linelength = 79
 
-fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
+" better-whitespace
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+
+" Goyo
+let g:goyo_width = 120
 
 fun! <SID>SetColorColumn()
     execute "set colorcolumn=" . join(map(range(1,254), '"+" . v:val'), ',')
@@ -109,11 +118,23 @@ endfun
 " misc settings
 "
 set textwidth=100
+set spelllang=en_us
+set spellfile=~/.vim/spell/en.utf-8.add
+set spell
+
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¬
+set list
+
+highlight NonText guifg=#4a4a59 ctermfg=18
+highlight SpecialKey guifg=#4a4a59 ctermfg=18
+
 
 augroup ksletmoe_general
     autocmd!
-    autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
     autocmd BufRead,BufNewFile * :call <SID>SetColorColumn()
+    autocmd FileType markdown setlocal nolist
+    autocmd User GoyoEnter Limelight0.8
+    autocmd User GoyoLeave Limelight!
 augroup END
 
 augroup filetype_overrides
@@ -150,6 +171,10 @@ nnoremap <Leader>sv :source $MYVIMRC<cr>
 
 " run black on file
 nnoremap <Leader>bk :Black<cr>
+
+
+" toggle Mucomplete auto completions
+nnoremap <Leader>ac :MUcompleteAutoToggle<cr>
 
 
 "

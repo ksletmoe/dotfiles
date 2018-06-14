@@ -10,6 +10,7 @@ if [ "$PLATFORM" = "Darwin" ]; then
     alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
     alias zzz="pmset sleepnow"
     alias vim='mvim -v'
+    export EDITOR="mvim -v"
 fi
 
 if [ "$PLATFORM" = "Darwin" ]; then

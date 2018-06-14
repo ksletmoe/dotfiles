@@ -2,6 +2,13 @@ if filereadable(expand("~/.vimrc_global"))
     source ~/.vimrc_global
 endif
 
+" Sorta mimic vim-unimpared mappings
+" insert newline below (without entering insert mode)
+nnoremap ]<Space> o<esc>
+
+" insert newline above (without entering insert mode)
+nnoremap [<Space> O<esc>
+
 
 nnoremap <Leader>bk :action Tool_External Tools_Black<cr>
 
