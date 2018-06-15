@@ -12,9 +12,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'tomtom/tcomment_vim'
 Plug 'itchyny/lightline.vim'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdtree'
 Plug 'chriskempson/base16-vim'
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'ambv/black'
@@ -27,6 +27,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-scripts/repeatable-motions.vim'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-repeat'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -109,6 +110,9 @@ let g:strip_whitespace_on_save=1
 " Goyo
 let g:goyo_width = 120
 
+" NERDTree
+nnoremap <Leader>nt :NERDTreeToggle<CR>
+
 fun! <SID>SetColorColumn()
     execute "set colorcolumn=" . join(map(range(1,254), '"+" . v:val'), ',')
 endfun
@@ -133,6 +137,7 @@ augroup ksletmoe_general
     autocmd!
     autocmd BufRead,BufNewFile * :call <SID>SetColorColumn()
     autocmd FileType markdown setlocal nolist
+    autocmd BufRead,BufNewFile *.md :Goyo
     autocmd User GoyoEnter Limelight0.8
     autocmd User GoyoLeave Limelight!
 augroup END
@@ -153,9 +158,6 @@ augroup END
 "
 " mappings
 "
-" better exit for command mode
-cnoremap jk <C-c>
-vnoremap jk <esc>
 
 " undo diff hunk
 nnoremap <Leader>hr <Plug>GitGutterUndoHunk

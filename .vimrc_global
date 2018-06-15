@@ -26,11 +26,15 @@ let maplocalleader = "\\"
 
 " easier escape
 inoremap jk <esc>
-cnoremap jk <esc>
+cnoremap jk <C-c>
+vnoremap jk <esc>
+
+" Movement in insert mode
+inoremap <C-h> <C-o>h
+inoremap <C-l> <C-o>a
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
 
 " remove search highlights
-nnoremap <Leader><space> :noh<cr>
-
-" everything inside the parens
-onoremap p i(
+nnoremap <Leader>hl :noh<cr>
 
