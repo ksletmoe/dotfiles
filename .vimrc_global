@@ -8,6 +8,7 @@ set expandtab
 set encoding=utf-8
 set shiftwidth=4
 set softtabstop=4
+set tabstop=4
 set number
 set backspace=indent,eol,start
 set laststatus=2
@@ -28,12 +29,6 @@ let maplocalleader = "\\"
 inoremap jk <esc>
 cnoremap jk <C-c>
 vnoremap jk <esc>
-
-" Movement in insert mode
-inoremap <C-h> <C-o>h
-inoremap <C-l> <C-o>a
-inoremap <C-j> <C-o>j
-inoremap <C-k> <C-o>k
 
 " remove search highlights
 nnoremap <Leader>hl :noh<cr>

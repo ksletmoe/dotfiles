@@ -31,6 +31,7 @@ Plug 'tpope/vim-repeat'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'othree/xml.vim'
 
 call plug#end()
 
@@ -126,19 +127,21 @@ set spelllang=en_us
 set spellfile=~/.vim/spell/en.utf-8.add
 set spell
 
-set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¬
+set listchars=tab:\|￫,space:·,nbsp:␣,trail:•,eol:¬
 set list
 
-highlight NonText guifg=#4a4a59 ctermfg=18
-highlight SpecialKey guifg=#4a4a59 ctermfg=18
+highlight NonText guifg=#4a4a59 ctermfg=08
+highlight SpecialKey guifg=#4a4a59 ctermfg=08
 
 
 augroup ksletmoe_general
     autocmd!
     autocmd BufRead,BufNewFile * :call <SID>SetColorColumn()
     autocmd FileType markdown setlocal nolist
+    autocmd BufRead,BufNewFile *.txt setlocal nolist
+    autocmd BufRead,BufNewFile *.txt :Goyo
     autocmd BufRead,BufNewFile *.md :Goyo
-    autocmd User GoyoEnter Limelight0.8
+    autocmd User GoyoEnter Limelight
     autocmd User GoyoLeave Limelight!
 augroup END
 
@@ -152,6 +155,8 @@ augroup shiftwidth_settings
     autocmd FileType rb setlocal shiftwidth=2 softtabstop=2
     autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2
     autocmd FileType py setlocal textwidth=79
+    autocmd FileType Makefile setlocal noexpandtab
+    autocmd FileType xml setlocal shiftwidth=2 softtabstop=2
 augroup END
 
 

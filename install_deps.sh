@@ -49,5 +49,39 @@ if [ "$PLATFORM" = "Darwin" ]; then
                       # spotify \
                       # pycharm-ce \
                       # slack
+else
+    sudo add-apt-repository ppa:pypa/ppa && sudo apt update
 
+    sudo apt-get install -y make \
+                            git \
+                            htop \
+                            tmux \
+                            jq \
+                            cmake \
+                            cloc \
+                            bash-completion \
+                            tree \
+                            hexedit  \
+                            build-essential \
+                            libssl-dev \
+                            zlib1g-dev \
+                            libbz2-dev \
+                            libreadline-dev \
+                            libsqlite3-dev \
+                            wget \
+                            curl \
+                            llvm \
+                            libncurses5-dev
+                            libncursesw5-dev \
+                            xz-utils \
+                            tk-dev
+
+    curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+
+    sudo apt-get install -y pipenv
+fi
+
+
+if [ ! -d "$HOME/.config/base16-shell" ]; then
+    git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
 fi
