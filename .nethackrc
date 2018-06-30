@@ -1,1 +1,1 @@
-OPTIONS=color, norest_on_space
+OPTIONS=color, norest_on_space, catname:Kane
