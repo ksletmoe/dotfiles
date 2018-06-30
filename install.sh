@@ -45,6 +45,7 @@ install_dotfile "scope.sh" "${HOME}/.config/ranger/scope.sh"
 install_dotfile ".tmux.conf" "${HOME}/.tmux.conf"
 
 # install_dotfile ".gitconfig" "${HOME}/.gitconfig"
+install dotfile ".gitignore" "${HOME}/.gitignore"
 
 install_dotfile ".nethackrc" "${HOME}/.nethackrc"
 
