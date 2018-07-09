@@ -37,8 +37,6 @@ install_dotfile "en.utf-8.add" "${HOME}/.vim/spell/en.utf-8.add"
 install_dotfile ".vimrc_global" "${HOME}/.vimrc_global"
 install_dotfile ".ideavimrc" "${HOME}/.ideavimrc"
 
-install_dotfile "en.utf-8.add" "${HOME}/.vim/spell/en.utf-8.add"
-
 
 install_dotfile "rc.conf" "${HOME}/.config/ranger/rc.conf"
 install_dotfile "scope.sh" "${HOME}/.config/ranger/scope.sh"
@@ -54,7 +52,7 @@ echo "Doing misc. environment setup..."
 # do any final environ setup
 
 # set up a Go workspace at the path I exported in .bash_profile
-source ./.bash_profile
+source "${DOTFILES_DIR}/.bash_profile"
 mkdir -p "$GOPATH/src/github.com"
 mkdir -p "$GOPATH/bin"
 mkdir -p "$GOPATH/pkg"
