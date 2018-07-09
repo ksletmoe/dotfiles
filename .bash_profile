@@ -1,3 +1,6 @@
+#so as not to be disturbed by Ctrl-S ctrl-Q in terminals:
+stty -ixon
+
 if [ -f $HOME/.bashrc ]; then
     source $HOME/.bashrc
 fi
@@ -8,7 +11,7 @@ fi
 
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
-    eval "$(pyenv global 3.6.5)"
+    eval "$(pyenv global 3.7.0)"
 fi
 
 export PIPENV_DEFAULT_PYTHON_VERSION=3.7

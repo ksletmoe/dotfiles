@@ -7,6 +7,11 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" https://github.com/vim/vim/issues/3117
+if has('python3')
+    silent! python3 1
+endif
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
@@ -17,11 +22,11 @@ Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'chriskempson/base16-vim'
 Plug 'jszakmeister/vim-togglecursor'
-Plug 'ambv/black'
+" Plug 'ambv/black'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'tpope/vim-jdaddy'
 Plug 'lifepillar/vim-mucomplete'
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 Plug 'cespare/vim-toml'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
@@ -32,7 +37,8 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'othree/xml.vim'
-
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+"
 call plug#end()
 
 " pull in my 'global' vim settings
@@ -71,7 +77,7 @@ let g:mucomplete#enable_auto_at_startup = 1
 augroup omni_completion_setup
     autocmd!
     autocmd FileType c          set omnifunc=ccomplete#Complete
-    autocmd FileType python     set omnifunc=jedi#completions
+    " autocmd FileType python     set omnifunc=jedi#completions
     autocmd FileType ruby       set omnifunc=rubycomplete#Complete
     autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
     autocmd FileType html       set omnifunc=htmlcomplete#CompleteTags
@@ -102,7 +108,7 @@ let g:togglecursor_leave = 'blinking_line'
 let g:togglecursor_replace = 'blinking_underline'
 
 " Black
-let g:black_linelength = 79
+" let g:black_linelength = 79
 
 " better-whitespace
 let g:better_whitespace_enabled=1
@@ -113,6 +119,13 @@ let g:goyo_width = 120
 
 " NERDTree
 nnoremap <Leader>nt :NERDTreeToggle<CR>
+let g:NERDTreeWinSize=60
+
+" ultisnips
+let g:UltiSnipsExpandTrigger="<c-s>"
+
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 fun! <SID>SetColorColumn()
     execute "set colorcolumn=" . join(map(range(1,254), '"+" . v:val'), ',')
@@ -123,9 +136,12 @@ endfun
 " misc settings
 "
 set textwidth=100
+
 set spelllang=en_us
 set spellfile=~/.vim/spell/en.utf-8.add
 set spell
+hi clear SpellBad
+hi SpellBad cterm=underline
 
 set listchars=tab:\|￫,space:·,nbsp:␣,trail:•,eol:¬
 set list
@@ -143,6 +159,7 @@ augroup ksletmoe_general
     autocmd BufRead,BufNewFile *.md :Goyo
     autocmd User GoyoEnter Limelight
     autocmd User GoyoLeave Limelight!
+    autocmd FileType nerdtree setlocal nolist
 augroup END
 
 augroup filetype_overrides
