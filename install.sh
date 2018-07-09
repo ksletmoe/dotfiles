@@ -27,6 +27,7 @@ function install_dotfile() {
     ln -sf "${DOTFILES_DIR}/${dotfile_name}" "${installation_path}"
 }
 
+echo "Installing dotfiles..."
 
 install_dotfile ".bashrc"  "${HOME}/.bashrc"
 install_dotfile ".bash_profile" "${HOME}/.bash_profile"
@@ -45,7 +46,15 @@ install_dotfile "scope.sh" "${HOME}/.config/ranger/scope.sh"
 install_dotfile ".tmux.conf" "${HOME}/.tmux.conf"
 
 # install_dotfile ".gitconfig" "${HOME}/.gitconfig"
-install dotfile ".gitignore" "${HOME}/.gitignore"
+install_dotfile ".gitignore" "${HOME}/.gitignore"
 
 install_dotfile ".nethackrc" "${HOME}/.nethackrc"
 
+echo "Doing misc. environment setup..."
+# do any final environ setup
+
+# set up a Go workspace at the path I exported in .bash_profile
+source ./.bash_profile
+mkdir -p "$GOPATH/src/github.com"
+mkdir -p "$GOPATH/bin"
+mkdir -p "$GOPATH/pkg"
