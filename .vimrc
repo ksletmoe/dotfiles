@@ -132,6 +132,8 @@ let g:miniBufExplorerAutoStart = 1
 nnoremap <Leader>mb :MBEToggle<cr>
 nnoremap <Leader>bn :MBEbn<cr>
 nnoremap <Leader>bp :MBEbp<cr>
+nnoremap <Leader>bb :MBEbb<cr>
+nnoremap <Leader>bf :MBEbf<cr>
 
 fun! <SID>SetColorColumn()
     execute "set colorcolumn=" . join(map(range(1,254), '"+" . v:val'), ',')
