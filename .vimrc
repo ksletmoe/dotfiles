@@ -168,6 +168,8 @@ augroup ksletmoe_general
     autocmd User GoyoEnter Limelight
     autocmd User GoyoLeave Limelight!
     autocmd FileType nerdtree setlocal nolist
+    " quit if only window open is NERDTree
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
 augroup filetype_overrides
