@@ -38,7 +38,8 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'othree/xml.vim'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-"
+Plug 'fholgado/minibufexpl.vim'
+
 call plug#end()
 
 " pull in my 'global' vim settings
@@ -122,10 +123,15 @@ nnoremap <Leader>nt :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=60
 
 " ultisnips
-let g:UltiSnipsExpandTrigger="<c-s>"
+let g:UltiSnipsExpandTrigger="<localleader><tab>"
+let g:UltiSnipsListSnippets="<localleader><tab>l"
 
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" Minibufexpl
+let g:miniBufExplorerAutoStart = 1
+
+nnoremap <Leader>mb :MBEToggle<cr>
+nnoremap <Leader>bn :MBEbn<cr>
+nnoremap <Leader>bp :MBEbp<cr>
 
 fun! <SID>SetColorColumn()
     execute "set colorcolumn=" . join(map(range(1,254), '"+" . v:val'), ',')
@@ -141,7 +147,7 @@ set spelllang=en_us
 set spellfile=~/.vim/spell/en.utf-8.add
 set spell
 hi clear SpellBad
-hi SpellBad cterm=underline
+hi SpellBad cterm=undercurl
 
 set listchars=tab:\|￫,space:·,nbsp:␣,trail:•,eol:¬
 set list
