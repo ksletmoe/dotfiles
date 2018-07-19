@@ -32,3 +32,7 @@ cnoremap jk <C-c>
 " remove search highlights
 nnoremap <Leader>hl :noh<cr>
 
+" delete without copy
+nnoremap <leader>d "_d
+xnoremap <leader>d "_d
+xnoremap <leader>p "_dP
