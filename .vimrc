@@ -22,7 +22,7 @@ Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'chriskempson/base16-vim'
 Plug 'jszakmeister/vim-togglecursor'
-" Plug 'ambv/black'
+Plug 'ambv/black'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'tpope/vim-jdaddy'
 Plug 'lifepillar/vim-mucomplete'
@@ -162,8 +162,9 @@ augroup ksletmoe_general
     autocmd!
     autocmd BufRead,BufNewFile * :call <SID>SetColorColumn()
     autocmd FileType markdown setlocal nolist
-    autocmd BufRead,BufNewFile *.txt setlocal nolist
+    autocmd BufRead,BufNewFile *.txt setlocal nolist textwidth=0
     autocmd BufRead,BufNewFile *.txt :Goyo
+    autocmd BufRead,BufNewFile *.md setlocal nolist textwidth=0
     autocmd BufRead,BufNewFile *.md :Goyo
     autocmd User GoyoEnter Limelight
     autocmd User GoyoLeave Limelight!
@@ -209,13 +210,4 @@ nnoremap <Leader>bk :Black<cr>
 
 " toggle Mucomplete auto completions
 nnoremap <Leader>ac :MUcompleteAutoToggle<cr>
-
-
-"
-" Abbreviations
-"
-
-" PEP-263 encoding string for UTF-8
-iabbrev encutf8 # -*- coding: utf-8 -*-
-iabbrev pyignore .idea<cr><cr>*.egg-info<cr>*.pyc<cr>build<cr>dist<cr>.coverage<cr>.pytest_cache
 
