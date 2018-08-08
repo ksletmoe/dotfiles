@@ -1,6 +1,9 @@
 #so as not to be disturbed by Ctrl-S ctrl-Q in terminals:
 stty -ixon
 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 if [ -f $HOME/.bashrc ]; then
     source $HOME/.bashrc
 fi
