@@ -34,11 +34,10 @@ Plug 'vim-scripts/repeatable-motions.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 Plug 'othree/xml.vim'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'fholgado/minibufexpl.vim'
+Plug 'dkprice/vim-easygrep'
 
 call plug#end()
 
@@ -115,9 +114,6 @@ let g:togglecursor_replace = 'blinking_underline'
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 
-" Goyo
-let g:goyo_width = 120
-
 " NERDTree
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=60
@@ -163,14 +159,10 @@ augroup ksletmoe_general
     autocmd BufRead,BufNewFile * :call <SID>SetColorColumn()
     autocmd FileType markdown setlocal nolist
     autocmd BufRead,BufNewFile *.txt setlocal nolist textwidth=0
-    autocmd BufRead,BufNewFile *.txt :Goyo
     autocmd BufRead,BufNewFile *.md setlocal nolist textwidth=0
-    autocmd BufRead,BufNewFile *.md :Goyo
-    autocmd User GoyoEnter Limelight
-    autocmd User GoyoLeave Limelight!
     autocmd FileType nerdtree setlocal nolist
     " quit if only window open is NERDTree
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | qall | endif
 augroup END
 
 augroup filetype_overrides
@@ -185,6 +177,7 @@ augroup shiftwidth_settings
     autocmd FileType py setlocal textwidth=79
     autocmd FileType Makefile setlocal noexpandtab
     autocmd FileType xml setlocal shiftwidth=2 softtabstop=2
+    autocmd FileType go setlocal noexpandtab
 augroup END
 
 
@@ -210,4 +203,3 @@ nnoremap <Leader>bk :Black<cr>
 
 " toggle Mucomplete auto completions
 nnoremap <Leader>ac :MUcompleteAutoToggle<cr>
-
