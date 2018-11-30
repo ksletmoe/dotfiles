@@ -26,7 +26,7 @@ Plug 'ambv/black'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'tpope/vim-jdaddy'
 Plug 'lifepillar/vim-mucomplete'
-" Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
 Plug 'cespare/vim-toml'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
@@ -38,6 +38,9 @@ Plug 'othree/xml.vim'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'fholgado/minibufexpl.vim'
 Plug 'dkprice/vim-easygrep'
+Plug 'majutsushi/tagbar'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'Glench/Vim-Jinja2-Syntax'
 
 call plug#end()
 
@@ -77,7 +80,7 @@ let g:mucomplete#enable_auto_at_startup = 1
 augroup omni_completion_setup
     autocmd!
     autocmd FileType c          set omnifunc=ccomplete#Complete
-    " autocmd FileType python     set omnifunc=jedi#completions
+    autocmd FileType python     set omnifunc=jedi#completions
     autocmd FileType ruby       set omnifunc=rubycomplete#Complete
     autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
     autocmd FileType html       set omnifunc=htmlcomplete#CompleteTags
@@ -131,6 +134,9 @@ nnoremap <Leader>bp :MBEbp<cr>
 nnoremap <Leader>bb :MBEbb<cr>
 nnoremap <Leader>bf :MBEbf<cr>
 
+" tagbar
+nnoremap <Leader>tb :TagbarToggle<cr>
+
 fun! <SID>SetColorColumn()
     execute "set colorcolumn=" . join(map(range(1,254), '"+" . v:val'), ',')
 endfun
@@ -168,6 +174,7 @@ augroup END
 augroup filetype_overrides
     autocmd!
     autocmd BufRead,BufNewFile *.template setlocal filetype=yaml
+    autocmd BufRead,BufNewFile *.jinja setlocal filetype=jinja
 augroup END
 
 augroup shiftwidth_settings
