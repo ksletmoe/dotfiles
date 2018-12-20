@@ -41,6 +41,8 @@ Plug 'dkprice/vim-easygrep'
 Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
 call plug#end()
 
@@ -114,19 +116,19 @@ let g:togglecursor_replace = 'blinking_underline'
 " let g:black_linelength = 79
 
 " better-whitespace
-let g:better_whitespace_enabled=1
-let g:strip_whitespace_on_save=1
+let g:better_whitespace_enabled = 1
+let g:strip_whitespace_on_save = 1
 
 " NERDTree
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=60
 
 " ultisnips
-let g:UltiSnipsExpandTrigger="<localleader><tab>"
-let g:UltiSnipsListSnippets="<localleader><tab>l"
+let g:UltiSnipsExpandTrigger = "<localleader><tab>"
+let g:UltiSnipsListSnippets = "<localleader><tab>l"
 
 " Minibufexpl
-let g:miniBufExplorerAutoStart = 1
+let g:miniBufExplorerAutoStart=1
 
 nnoremap <Leader>mb :MBEToggle<cr>
 nnoremap <Leader>bn :MBEbn<cr>
@@ -137,6 +139,14 @@ nnoremap <Leader>bf :MBEbf<cr>
 " tagbar
 nnoremap <Leader>tb :TagbarToggle<cr>
 
+" easygrep
+let g:EasyGrepRecursive = 1
+let g:EasyGrepFilesToExclude = "*.swp,*~,.git,tags*,build"
+
+" ctrlp
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_map = '<c-p>'
+
 fun! <SID>SetColorColumn()
     execute "set colorcolumn=" . join(map(range(1,254), '"+" . v:val'), ',')
 endfun
@@ -145,6 +155,9 @@ endfun
 "
 " misc settings
 "
+set exrc
+set secure
+
 set textwidth=100
 
 set spelllang=en_us
