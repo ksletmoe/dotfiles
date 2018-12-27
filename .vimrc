@@ -43,6 +43,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 call plug#end()
 
@@ -57,6 +58,9 @@ if !has('gui_running')
 endif
 
 
+"
+" base16-vim config
+"
 if filereadable(expand("~/.vimrc_background"))
     let g:base16colorspace=256
     source ~/.vimrc_background
@@ -67,6 +71,10 @@ endif
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 
+"
+" Gitgutter config
+"
+nnoremap <Leader>hr <Plug>GitGutterUndoHunk
 
 "
 " Mucomplete config
@@ -77,7 +85,8 @@ set completeopt+=menu,menuone,noinsert,noselect
 set shortmess+=c
 set belloff+=ctrlg
 let g:mucomplete#enable_auto_at_startup = 1
-
+" toggle Mucomplete auto completions
+nnoremap <Leader>ac :MUcompleteAutoToggle<cr>
 
 augroup omni_completion_setup
     autocmd!
@@ -104,30 +113,54 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
 
-
+"
 " lightline
+"
 let g:lightline = { 'colorscheme': 'materia', }
 
-
+"
+" Toggle-cursor config
+"
 let g:togglecursor_leave = 'blinking_line'
 let g:togglecursor_replace = 'blinking_underline'
 
-" Black
+"
+" Black config
+"
 " let g:black_linelength = 79
+" run black on file
+nnoremap <Leader>bk :Black<cr>
 
+"
 " better-whitespace
+"
 let g:better_whitespace_enabled = 1
 let g:strip_whitespace_on_save = 1
 
+"
 " NERDTree
+"
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=60
 
+augroup nerdtree_setup
+    autocmd!
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | wincmd p | ene | exe 'NERDTree' argv()[0] | endif
+    " quit if only window open is NERDTree
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | qall | endif
+augroup end
+
+"
 " ultisnips
+"
 let g:UltiSnipsExpandTrigger = "<localleader><tab>"
 let g:UltiSnipsListSnippets = "<localleader><tab>l"
 
+"
 " Minibufexpl
+"
 let g:miniBufExplorerAutoStart=1
 
 nnoremap <Leader>mb :MBEToggle<cr>
@@ -136,25 +169,30 @@ nnoremap <Leader>bp :MBEbp<cr>
 nnoremap <Leader>bb :MBEbb<cr>
 nnoremap <Leader>bf :MBEbf<cr>
 
+"
 " tagbar
+"
 nnoremap <Leader>tb :TagbarToggle<cr>
 
+"
 " easygrep
+"
 let g:EasyGrepRecursive = 1
 let g:EasyGrepFilesToExclude = "*.swp,*~,.git,tags*,build"
 
+"
 " ctrlp
+"
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_map = '<c-p>'
-
-fun! <SID>SetColorColumn()
-    execute "set colorcolumn=" . join(map(range(1,254), '"+" . v:val'), ',')
-endfun
-
 
 "
 " misc settings
 "
+fun! <SID>SetColorColumn()
+    execute "set colorcolumn=" . join(map(range(1,254), '"+" . v:val'), ',')
+endfun
+
 set exrc
 set secure
 
@@ -172,7 +210,6 @@ set list
 highlight NonText guifg=#4a4a59 ctermfg=08
 highlight SpecialKey guifg=#4a4a59 ctermfg=08
 
-
 augroup ksletmoe_general
     autocmd!
     autocmd BufRead,BufNewFile * :call <SID>SetColorColumn()
@@ -180,8 +217,6 @@ augroup ksletmoe_general
     autocmd BufRead,BufNewFile *.txt setlocal nolist textwidth=0
     autocmd BufRead,BufNewFile *.md setlocal nolist textwidth=0
     autocmd FileType nerdtree setlocal nolist
-    " quit if only window open is NERDTree
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | qall | endif
 augroup END
 
 augroup filetype_overrides
@@ -200,26 +235,12 @@ augroup shiftwidth_settings
     autocmd FileType go setlocal noexpandtab
 augroup END
 
-
 "
-" mappings
+" misc mappings
 "
-
-" undo diff hunk
-nnoremap <Leader>hr <Plug>GitGutterUndoHunk
-
 " toggle line numbers
 nnoremap <Leader>nu :set nu!<cr>
-
 " edit .vimrc in new window
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
-
 " source .vimrc
 nnoremap <Leader>sv :source $MYVIMRC<cr>
-
-" run black on file
-nnoremap <Leader>bk :Black<cr>
-
-
-" toggle Mucomplete auto completions
-nnoremap <Leader>ac :MUcompleteAutoToggle<cr>
