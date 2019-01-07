@@ -228,9 +228,9 @@ augroup END
 
 augroup shiftwidth_settings
     autocmd!
-    autocmd FileType rb setlocal shiftwidth=2 softtabstop=2
+    autocmd FileType ruby setlocal shiftwidth=2 softtabstop=2
     autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2
-    autocmd FileType py setlocal textwidth=79
+    autocmd FileType python setlocal textwidth=79
     autocmd FileType Makefile setlocal noexpandtab
     autocmd FileType xml setlocal shiftwidth=2 softtabstop=2
     autocmd FileType go setlocal noexpandtab
