@@ -20,7 +20,3 @@ fi
 export PIPENV_DEFAULT_PYTHON_VERSION=3.7
 export PIPENV_SHELL_FANCY=1
 export PIPENV_MAX_SUBPROCESS=64
-
-#export GOPATH="$HOME/development/go"
-#export GOBIN="$HOME/development/go/bin"
-

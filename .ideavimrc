@@ -11,4 +11,4 @@ nnoremap [<Space> O<esc>
 
 
 nnoremap <Leader>bk :action Tool_External Tools_Black<cr>
-
+nnoremap <Leader>is :action Tool_External Tools_isort<cr>

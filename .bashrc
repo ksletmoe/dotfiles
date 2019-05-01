@@ -1,6 +1,3 @@
-# PATH shenanigans
-export PATH="$PATH":~/bin
-
 export PLATFORM=$(uname -s)
 
 # aliases
@@ -73,3 +70,23 @@ function set_ps1() {
 
 set_ps1
 
+function swagger_editor() {
+    if [ "$PLATFORM" = "Darwin" ]; then
+        docker ps &> /dev/null
+        if [[ $? != 0 ]]; then
+            echo "Docker appears to not be running..."
+            return 1
+        fi
+
+        docker ps | grep "swaggerapi/swagger-editor" &> /dev/null
+        if [[ $? != 0 ]]; then
+            echo "Starting swaggerapi/swagger-editor Docker container"
+            docker run -d -p 8080:8080 swaggerapi/swagger-editor
+        else
+            echo "swaggerapi/swagger-editor Docker container already running"
+        fi
+        open http://localhost:8080
+    else
+        echo "Update this for non macOS, yo!"
+    fi
+}

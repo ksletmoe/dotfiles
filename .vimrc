@@ -45,6 +45,7 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
@@ -128,7 +129,7 @@ let g:togglecursor_replace = 'blinking_underline'
 "
 " Black config
 "
-" let g:black_linelength = 79
+let g:black_linelength = 100
 " run black on file
 nnoremap <Leader>bk :Black<cr>
 
@@ -190,14 +191,10 @@ let g:ctrlp_map = '<c-p>'
 "
 " misc settings
 "
-fun! <SID>SetColorColumn()
-    execute "set colorcolumn=" . join(map(range(1,254), '"+" . v:val'), ',')
-endfun
-
 set exrc
 set secure
 
-set textwidth=100
+set colorcolumn=100
 
 set spelllang=en_us
 set spellfile=~/.vim/spell/en.utf-8.add
@@ -213,10 +210,8 @@ highlight SpecialKey guifg=#4a4a59 ctermfg=08
 
 augroup ksletmoe_general
     autocmd!
-    autocmd BufRead,BufNewFile * :call <SID>SetColorColumn()
-    autocmd FileType markdown setlocal nolist
-    autocmd BufRead,BufNewFile *.txt setlocal nolist textwidth=0
-    autocmd BufRead,BufNewFile *.md setlocal nolist textwidth=0
+    autocmd FileType markdown setlocal nolist wrap linebreak breakindent
+    autocmd FileType text setlocal nolist wrap linebreak breakindent
     autocmd FileType nerdtree setlocal nolist
 augroup END
 
@@ -230,10 +225,12 @@ augroup shiftwidth_settings
     autocmd!
     autocmd FileType ruby setlocal shiftwidth=2 softtabstop=2
     autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2
-    autocmd FileType python setlocal textwidth=79
+    autocmd FileType python setlocal colorcolumn=100
     autocmd FileType Makefile setlocal noexpandtab
     autocmd FileType xml setlocal shiftwidth=2 softtabstop=2
     autocmd FileType go setlocal noexpandtab
+    autocmd FileType markdown setlocal shiftwidth=2 softtabstop=2 colorcolumn=0
+    autocmd FileType text setlocal shiftwidth=2 softtabstop=2 colorcolumn=0
 augroup END
 
 "
