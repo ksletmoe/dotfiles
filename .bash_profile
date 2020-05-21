@@ -14,7 +14,7 @@ fi
 
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
-    eval "$(pyenv global 3.7.0)"
+    eval "$(pyenv global 3.7.7)"
 fi
 
 export PIPENV_DEFAULT_PYTHON_VERSION=3.7

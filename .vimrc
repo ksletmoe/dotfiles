@@ -130,6 +130,7 @@ let g:togglecursor_replace = 'blinking_underline'
 " Black config
 "
 let g:black_linelength = 100
+let g:black_virtualenv="~/.virtualenvs/vim_black"
 " run black on file
 nnoremap <Leader>bk :Black<cr>
 
@@ -180,7 +181,7 @@ nnoremap <Leader>tb :TagbarToggle<cr>
 " easygrep
 "
 let g:EasyGrepRecursive = 1
-let g:EasyGrepFilesToExclude = "*.swp,*~,.git,tags*,build"
+let g:EasyGrepFilesToExclude = "*.swp,*~,.git,tags*,build/"
 
 "
 " ctrlp
