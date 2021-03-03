@@ -23,7 +23,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'chriskempson/base16-vim'
 Plug 'jszakmeister/vim-togglecursor'
-Plug 'ambv/black'
+Plug 'psf/black'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'tpope/vim-jdaddy'
 Plug 'lifepillar/vim-mucomplete'
@@ -34,6 +34,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'vim-scripts/repeatable-motions.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'othree/xml.vim'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -45,7 +46,6 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
