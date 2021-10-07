@@ -86,7 +86,7 @@ function swagger_editor() {
     fi
 }
 
-export FZF_CTRL_T_OPTS='--height=80% --reverse --info=inline --preview "bat --style=numbers --color=always --line-range :500 {}"'
+export FZF_CTRL_T_OPTS='--height=80% --reverse --info=inline --preview "bat --style=numbers --color=always --theme=base16-256 --line-range :500 {}"'
 export FZF_ALT_C_OPTS='--preview "tree -C {} | head -200"'
 export FZF_TMUX_OPTS='-p 80%,70%'
 
