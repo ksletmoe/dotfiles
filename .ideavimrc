@@ -1,6 +1,4 @@
-if filereadable(expand("~/.vimrc_global"))
-    source ~/.vimrc_global
-endif
+source ~/.vimrc_global
 
 " Sorta mimic vim-unimpared mappings
 " insert newline below (without entering insert mode)
@@ -12,3 +10,8 @@ nnoremap [<Space> O<esc>
 
 nnoremap <Leader>bk :action Tool_External Tools_Black<cr>
 nnoremap <Leader>is :action Tool_External Tools_isort<cr>
+
+set easymotion
+set NERDTree
+set surround
+set commentary

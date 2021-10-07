@@ -8,13 +8,14 @@ if [ -f $HOME/.bashrc ]; then
     source $HOME/.bashrc
 fi
 
-if [ -d "$HOME/.pyenv/bin" ]; then
-    export PATH="$HOME/.pyenv/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init --path)"
+    eval "$(pyenv global 3.9.6)"
 fi
 
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-    eval "$(pyenv global 3.7.7)"
+
+if command -v rbenv 1>/dev/null 2>&1; then
+    eval "$(rbenv init -)"
 fi
 
 export PIPENV_DEFAULT_PYTHON_VERSION=3.9

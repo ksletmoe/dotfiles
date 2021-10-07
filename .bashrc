@@ -1,24 +1,17 @@
 export PLATFORM=$(uname -s)
 
-# aliases
-alias ll="ls -al"
-
 if [ "$PLATFORM" = "Darwin" ]; then
     alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
     alias zzz="pmset sleepnow"
     alias vim="mvim -v"
     export EDITOR="mvim -v"
-fi
 
-if [ "$PLATFORM" = "Darwin" ]; then
-    if [ -f $(brew --prefix)/etc/bash_completion ]; then
-          . $(brew --prefix)/etc/bash_completion
+    if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+        . "$(brew --prefix)/etc/bash_completion"
     fi
-fi
 
-if [ "$PLATFORM" = "Darwin" ]; then
-    if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
-      . `brew --prefix`/etc/bash_completion.d/git-completion.bash
+    if [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ]; then
+        . "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
     fi
 fi
 
@@ -32,8 +25,10 @@ if [ -d "$HOME/.config/base16-shell" ]; then
     [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 fi
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # set PS1
-ColorOff="\[\033[0m\]"       # Text Reset
+ColorOff="\[\033[0m\]"        # Text Reset
 
 # Regular Colors
 Black="\[\033[0;30m\]"        # Black
@@ -90,3 +85,12 @@ function swagger_editor() {
         echo "Update this for non macOS, yo!"
     fi
 }
+
+export FZF_CTRL_T_OPTS='--height=80% --reverse --info=inline --preview "bat --style=numbers --color=always --line-range :500 {}"'
+export FZF_ALT_C_OPTS='--preview "tree -C {} | head -200"'
+export FZF_TMUX_OPTS='-p 80%,70%'
+
+bind '"^[c":"fzf-cd-widget"'
+
+# aliases
+alias ll="ls -al"

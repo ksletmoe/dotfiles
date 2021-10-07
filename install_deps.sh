@@ -3,7 +3,7 @@
 if [ "$PLATFORM" = "Darwin" ]; then
     xcode-select --install
 
-    brew install -y bash \
+    brew install bash \
                     bash-completion \
                     tmux \
                     ranger \
@@ -35,20 +35,15 @@ if [ "$PLATFORM" = "Darwin" ]; then
 
     brew tap homebrew/cask
 
-    brew cask install iterm2 \
+    brew install --cask iterm2 \
                       flycut \
                       caffeine \
                       bettertouchtool \
                       macdown \
                       docker \
-                      virtualbox \
-                      google-chrome \
-                      cyberduck \
                       gimp \
-                      vlc \
-                      # spotify \
-                      # pycharm-ce \
-                      # slack
+                      vlc
+                      
 else
     sudo add-apt-repository ppa:pypa/ppa && sudo apt update
 

@@ -43,16 +43,10 @@ install_dotfile "scope.sh" "${HOME}/.config/ranger/scope.sh"
 
 install_dotfile ".tmux.conf" "${HOME}/.tmux.conf"
 
-# install_dotfile ".gitconfig" "${HOME}/.gitconfig"
+install_dotfile ".gitconfig" "${HOME}/.gitconfig"
 install_dotfile ".gitignore" "${HOME}/.gitignore"
 
 install_dotfile ".nethackrc" "${HOME}/.nethackrc"
 
 echo "Doing misc. environment setup..."
 # do any final environ setup
-
-# set up a Go workspace at the path I exported in .bash_profile
-source "${DOTFILES_DIR}/.bash_profile"
-mkdir -p "$GOPATH/src/github.com"
-mkdir -p "$GOPATH/bin"
-mkdir -p "$GOPATH/pkg"
