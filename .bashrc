@@ -25,6 +25,10 @@ if [ -d "$HOME/.config/base16-shell" ]; then
     [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 fi
 
+if [ -d "$HOME/.diff-so-fancy" ];  then
+    export PATH="$HOME/.diff-so-fancy:$PATH"
+fi
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # set PS1

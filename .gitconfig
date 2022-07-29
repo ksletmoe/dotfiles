@@ -1,5 +1,5 @@
 [core]
-    pager = less -FRXSM
+	pager = diff-so-fancy | less --tabs=4 -RFX
     editor = vim
     compression = 9
     whitespace = blank-at-eol,space-before-tab,blank-at-eof,-cr-at-eol
@@ -60,3 +60,5 @@
     b = branch
     dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
 
+[interactive]
+	diffFilter = diff-so-fancy --patch

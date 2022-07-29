@@ -43,7 +43,7 @@ if [ "$PLATFORM" = "Darwin" ]; then
                       docker \
                       gimp \
                       vlc
-                      
+
 else
     sudo add-apt-repository ppa:pypa/ppa && sudo apt update
 
@@ -79,4 +79,8 @@ fi
 
 if [ ! -d "$HOME/.config/base16-shell" ]; then
     git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+fi
+
+if [ ! -d "$HOME/.diff-so-fancy" ]; then
+    git clone https://github.com/so-fancy/diff-so-fancy.git ~/.diff-so-fancy
 fi
