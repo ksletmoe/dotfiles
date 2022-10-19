@@ -66,7 +66,7 @@ function __calc_ps1_path() {
     local i=0
     for (( i=0; i<${#path}; i++ )); do
         case "${path:i:1}" in
-            \~) out+="${path:i:1}" ;;
+            \~) out+=$(echo "${path:i:1}" | sed -e 's/\\//') ;;
             /) out+="${path:i:2}"; continue ;;
             *) continue ;;
         esac
@@ -74,27 +74,26 @@ function __calc_ps1_path() {
     __ps1_path="${out:0:-1}${path##*/}"
 }
 
-function __git_branch_component() {
+function __calc_git_branch_component() {
     git branch &> /dev/null
 
     if [ $? -eq 0 ]; then
-        branch_name=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-
-        echo "${Cyan}───[⎇ : ${ColorOff}${branch_name}${Cyan}]${ColorOff}"
+        __ps1_git_branch_name=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
     else
-        echo ""
+        __ps1_git_branch_name=""
     fi
 }
 
-export PROMPT_COMMAND="__calc_ps1_path"
+export PROMPT_COMMAND="__calc_ps1_path && __calc_git_branch_component"
 
 function set_ps1() {
     local user_component="\u${Cyan}@${ColorOff}\h"
     [ -n "$RANGER_LEVEL" ] && user_component='🤠  '"$user_component"
 
     local virtualenv_component="\`if [[ -n \"\$VIRTUAL_ENV\" ]]; then echo \"${Cyan}───[venv:${ColorOff} \${VIRTUAL_ENV##*/}${Cyan}]${ColorOff}\"; fi\`"
+    local git_branch_component="\`if [[ -n \"\$__ps1_git_branch_name\" ]]; then echo \"${Cyan}───[${ColorOff}${BCyan}⎇ ${ColorOff} \${__ps1_git_branch_name}${Cyan}]${ColorOff}\"; fi\`"
 
-    export PS1="${Cyan}┌─[${ColorOff}\`if [ \$? = 0 ]; then echo \"${Green}✔ ${ColorOff}\"; else echo \"${Red}✘ ${ColorOff}\"; fi\`${Cyan}]───[${ColorOff}\$__ps1_path${Cyan}]───[${ColorOff}${user_component}${Cyan}]${ColorOff}$(__git_branch_component)${virtualenv_component}\n${Cyan}└───➤ ${ColorOff} "
+    export PS1="${Cyan}┌─[${ColorOff}\`if [ \$? = 0 ]; then echo \"${Green}✔ ${ColorOff}\"; else echo \"${Red}✘ ${ColorOff}\"; fi\`${Cyan}]───[${ColorOff}\$__ps1_path${Cyan}]───[${ColorOff}${user_component}${Cyan}]${ColorOff}${git_branch_component}${virtualenv_component}\n${Cyan}└───➤ ${ColorOff} "
 }
 
 set_ps1
