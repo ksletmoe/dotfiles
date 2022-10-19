@@ -58,13 +58,39 @@ BWhite="\[\033[1;37m\]"       # White
 # PS1
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+# https://stackoverflow.com/a/44269076/906751
+function __calc_ps1_path() {
+    local path="$PWD"
+    path="${path//~/\~}"
+    local out=""
+    local i=0
+    for (( i=0; i<${#path}; i++ )); do
+        case "${path:i:1}" in
+            \~) out+="${path:i:1}" ;;
+            /) out+="${path:i:2}"; continue ;;
+            *) continue ;;
+        esac
+    done
+    __ps1_path="${out:0:-1}${path##*/}"
+}
+
+function __git_branch_component() {
+    git branch &> /dev/null || return ""
+
+    branch_name=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+
+    echo "${Cyan}───[⎇ : ${ColorOff}${branch_name}${Cyan}]${ColorOff}"
+}
+
+export PROMPT_COMMAND="__calc_ps1_path"
+
 function set_ps1() {
     local user_component="\u${Cyan}@${ColorOff}\h"
     [ -n "$RANGER_LEVEL" ] && user_component='🤠  '"$user_component"
 
     local virtualenv_component="\`if [[ -n \"\$VIRTUAL_ENV\" ]]; then echo \"${Cyan}───[venv:${ColorOff} \${VIRTUAL_ENV##*/}${Cyan}]${ColorOff}\"; fi\`"
 
-    export PS1="${Cyan}┌─[${ColorOff}\`if [ \$? = 0 ]; then echo \"${Green}✔ ${ColorOff}\"; else echo \"${Red}✘ ${ColorOff}\"; fi\`${Cyan}]───[${ColorOff}\w${Cyan}]───[${ColorOff}${user_component}${Cyan}]${ColorOff}${virtualenv_component}\n${Cyan}└───➤ ${ColorOff} "
+    export PS1="${Cyan}┌─[${ColorOff}\`if [ \$? = 0 ]; then echo \"${Green}✔ ${ColorOff}\"; else echo \"${Red}✘ ${ColorOff}\"; fi\`${Cyan}]───[${ColorOff}\$__ps1_path${Cyan}]───[${ColorOff}${user_component}${Cyan}]${ColorOff}$(__git_branch_component)${virtualenv_component}\n${Cyan}└───➤ ${ColorOff} "
 }
 
 set_ps1
