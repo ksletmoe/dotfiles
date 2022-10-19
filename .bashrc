@@ -75,11 +75,15 @@ function __calc_ps1_path() {
 }
 
 function __git_branch_component() {
-    git branch &> /dev/null || return ""
+    git branch &> /dev/null
 
-    branch_name=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+    if [ $? -eq 0 ]; then
+        branch_name=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
 
-    echo "${Cyan}───[⎇ : ${ColorOff}${branch_name}${Cyan}]${ColorOff}"
+        echo "${Cyan}───[⎇ : ${ColorOff}${branch_name}${Cyan}]${ColorOff}"
+    else
+        echo ""
+    fi
 }
 
 export PROMPT_COMMAND="__calc_ps1_path"
