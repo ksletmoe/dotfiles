@@ -6,8 +6,8 @@
     eol = lf
     excludesfile = ~/.gitignore
 [user]
-    email = REPLACEME
-    name = REPLACEME
+    email = sletmoe@amazon.com
+    name = sletmoe
 [color]
     ui = auto
 [log]

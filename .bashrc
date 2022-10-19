@@ -58,15 +58,23 @@ BWhite="\[\033[1;37m\]"       # White
 # PS1
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+function __escape_slashes() {
+    local result=$(echo $1 | sed -e 's/\//\\\//g')
+
+    echo "$result"
+}
+
 # https://stackoverflow.com/a/44269076/906751
 function __calc_ps1_path() {
     local path="$PWD"
-    path="${path//~/\~}"
+    local home=$(__escape_slashes "$HOME")
+    path=$(echo "$path" | sed -e "s/^$home/~/")
+    # path="${path//~/~}"
     local out=""
     local i=0
     for (( i=0; i<${#path}; i++ )); do
         case "${path:i:1}" in
-            \~) out+=$(echo "${path:i:1}" | sed -e 's/\\//') ;;
+            \~) out+="${path:i:1}" ;;
             /) out+="${path:i:2}"; continue ;;
             *) continue ;;
         esac
