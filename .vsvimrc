@@ -1,0 +1,45 @@
+" Settings that pertain whether I'm in console vim, ideavim, gvim, etc.
+
+"
+" misc settings
+"
+set nocompatible
+set expandtab
+set encoding=utf-8
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set number
+set backspace=indent,eol,start
+set laststatus=2
+set noshowmode
+set cursorline
+set hlsearch
+set incsearch
+set nowrap
+
+let mapleader = " "
+let maplocalleader = "\\"
+
+"
+" mappings
+"
+
+" easier escape
+inoremap jk <esc>
+cnoremap jk <C-c>
+
+" remove search highlights
+nnoremap <Leader>hl :noh<cr>
+
+" delete without copy
+nnoremap <leader>d "_d
+xnoremap <leader>d "_d
+xnoremap <leader>p "_dP
+
+" Sorta mimic vim-unimpared mappings
+" insert newline below (without entering insert mode)
+nnoremap ]<Space> o<esc>
+
+" insert newline above (without entering insert mode)
+nnoremap [<Space> O<esc>

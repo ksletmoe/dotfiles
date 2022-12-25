@@ -36,6 +36,7 @@ install_dotfile ".vimrc" "${HOME}/.vimrc"
 install_dotfile "en.utf-8.add" "${HOME}/.vim/spell/en.utf-8.add"
 install_dotfile ".vimrc_global" "${HOME}/.vimrc_global"
 install_dotfile ".ideavimrc" "${HOME}/.ideavimrc"
+install_dotfile ".vsvimrc" "${HOME}/.vsvimrc"
 
 
 install_dotfile "rc.conf" "${HOME}/.config/ranger/rc.conf"
