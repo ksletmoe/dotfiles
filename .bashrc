@@ -1,6 +1,7 @@
 export PLATFORM=$(uname -s)
 
 if [ "$PLATFORM" = "Darwin" ]; then
+    export PATH="/opt/homebrew/bin:$PATH"
     alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
     alias zzz="pmset sleepnow"
     alias vim="mvim -v"
