@@ -47,7 +47,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'udalov/kotlin-vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 call plug#end()
 
@@ -57,19 +56,9 @@ if filereadable(expand("~/.vimrc_global"))
 endif
 
 
-if !has('gui_running')
-    set t_Co=256
-endif
-
-
-"
-" base16-vim config
-"
-if filereadable(expand("~/.vimrc_background"))
-    let g:base16colorspace=256
-    source ~/.vimrc_background
-endif
-
+" Base16
+let base16colorspace=256
+colorscheme base16-material
 
 " Completions
 filetype plugin on

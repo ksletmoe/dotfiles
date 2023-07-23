@@ -49,5 +49,8 @@ install_dotfile ".gitignore" "${HOME}/.gitignore"
 
 install_dotfile ".nethackrc" "${HOME}/.nethackrc"
 
+mkdir -p "${HOME}/.config"
+install_dotfile "keymapper.conf" "${HOME}/.config/keymapper.conf"
+
 echo "Doing misc. environment setup..."
 # do any final environ setup

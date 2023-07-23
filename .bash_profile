@@ -18,7 +18,7 @@ if command -v rbenv 1>/dev/null 2>&1; then
     eval "$(rbenv init -)"
 fi
 
-export PIPENV_DEFAULT_PYTHON_VERSION=3.9
+export PIPENV_DEFAULT_PYTHON_VERSION=3.11
 export PIPENV_SHELL_FANCY=1
 export PIPENV_MAX_SUBPROCESS=64
 export PATH="/usr/local/sbin:$PATH"
