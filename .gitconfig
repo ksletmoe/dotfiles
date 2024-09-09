@@ -5,6 +5,8 @@
     whitespace = blank-at-eol,space-before-tab,blank-at-eof,-cr-at-eol
     eol = lf
     excludesfile = ~/.gitignore
+[pager]
+    difftool = true
 [user]
     email = sletmoe@amazon.com
     name = sletmoe
@@ -18,7 +20,6 @@
     renameLimit = 0
     renames = copy
     algorithm = histogram
-    tool = vimdiff
 [mergetool]
     keepBackup = false
     keepTemporaries = false

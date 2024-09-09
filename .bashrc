@@ -4,9 +4,16 @@ alias vim="nvim"
 alias vimdiff="nvim -d"
 export EDITOR="nvim"
 
+# to hold the local config I don't want to check into my dotfiles git repo (work stuff, mostly)
+if [ -f "$HOME/.bashrc_local" ]; then
+	. $HOME/.bashrc_local
+fi
+
 if [ "$PLATFORM" = "Darwin" ]; then
 	alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 	alias zzz="pmset sleepnow"
+
+	export PATH=/opt/homebrew/bin:$PATH
 
 	if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
 		. "$(brew --prefix)/etc/bash_completion"
@@ -15,16 +22,6 @@ if [ "$PLATFORM" = "Darwin" ]; then
 	if [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ]; then
 		. "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
 	fi
-fi
-
-# to hold the local config I don't want to check into my dotfiles git repo (work stuff, mostly)
-if [ -f "$HOME/.bashrc_local" ]; then
-	. $HOME/.bashrc_local
-fi
-
-if [ -d "$HOME/.config/base16-shell" ]; then
-	BASE16_SHELL="$HOME/.config/base16-shell/"
-	[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && source "$BASE16_SHELL/profile_helper.sh"
 fi
 
 if [ -d "$HOME/.diff-so-fancy" ]; then
@@ -141,3 +138,5 @@ bind '"^[c":"fzf-cd-widget"'
 
 # aliases
 alias ll="ls -al"
+
+export PATH=$PATH:/Users/sletmoe/.toolbox/bin
