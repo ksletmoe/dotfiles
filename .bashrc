@@ -1,41 +1,70 @@
-export PLATFORM=$(uname -s)
+# platform
+PLATFORM="$(uname -s)"
 
-alias vim="nvim"
-alias vimdiff="nvim -d"
+# helpers
+path_prepend() {
+	local dir="$1"
+	[ -n "$dir" ] || return 0
+	[ -d "$dir" ] || return 0
+	case ":$PATH:" in
+		*":$dir:"*) ;;
+		*) PATH="$dir:$PATH" ;;
+	esac
+}
+
+# environment
 export EDITOR="nvim"
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+export PYENV_ROOT="$HOME/.pyenv"
+export TMUX_TMPDIR="$HOME/.tmux/tmp"
 
-# to hold the local config I don't want to check into my dotfiles git repo (work stuff, mostly)
+# local overrides (not in dotfiles)
 if [ -f "$HOME/.bashrc_local" ]; then
-	. $HOME/.bashrc_local
+	. "$HOME/.bashrc_local"
 fi
 
+# path setup
+path_prepend "$HOME/.local/bin"
+path_prepend "$PYENV_ROOT/bin"
+if [ -d "$HOME/.diff-so-fancy" ]; then
+	path_prepend "$HOME/.diff-so-fancy"
+fi
+if [ "$PLATFORM" = "Darwin" ]; then
+	path_prepend "/opt/homebrew/bin"
+fi
+
+# aliases
+alias vim="nvim"
+alias vimdiff="nvim -d"
+alias ll="ls -al"
+command -v xclip >/dev/null 2>&1 && alias pbcopy='xclip -sel clip'
 if [ "$PLATFORM" = "Darwin" ]; then
 	alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 	alias zzz="pmset sleepnow"
+fi
 
-	export PATH=/opt/homebrew/bin:$PATH
-
+# completions and interactive key bindings
+if [ "$PLATFORM" = "Darwin" ]; then
 	if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
 		. "$(brew --prefix)/etc/bash_completion"
 	fi
-
 	if [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ]; then
 		. "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
 	fi
 fi
 
-if [ -d "$HOME/.diff-so-fancy" ]; then
-	export PATH="$HOME/.diff-so-fancy:$PATH"
+if [[ $- == *i* ]] && command -v fzf >/dev/null 2>&1; then
+	eval "$(fzf --bash)"
+	bind '"^[c":"fzf-cd-widget"'
 fi
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
-[ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
+# pyenv
+if command -v pyenv >/dev/null 2>&1; then
+	eval "$(pyenv init - bash)"
+fi
 
-# set PS1
+# prompt colors
 ColorOff="\[\033[0m\]" # Text Reset
-
-# Regular Colors
 Black="\[\033[0;30m\]"  # Black
 Red="\[\033[0;31m\]"    # Red
 Green="\[\033[0;32m\]"  # Green
@@ -44,8 +73,6 @@ Blue="\[\033[0;34m\]"   # Blue
 Purple="\[\033[0;35m\]" # Purple
 Cyan="\[\033[0;36m\]"   # Cyan
 White="\[\033[0;37m\]"  # White
-
-# Bold
 BBlack="\[\033[1;30m\]"  # Black
 BRed="\[\033[1;31m\]"    # Red
 BGreen="\[\033[1;32m\]"  # Green
@@ -55,13 +82,10 @@ BPurple="\[\033[1;35m\]" # Purple
 BCyan="\[\033[1;36m\]"   # Cyan
 BWhite="\[\033[1;37m\]"  # White
 
-# PS1
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-
+# prompt helpers
 function __escape_slashes() {
-	local result=$(echo $1 | sed -e 's/\//\\\//g')
-
-	echo "$result"
+	local input="$1"
+	printf '%s\n' "$input" | sed -e 's/\//\\\//g'
 }
 
 # https://stackoverflow.com/a/44269076/906751
@@ -69,7 +93,6 @@ function __calc_ps1_path() {
 	local path="$PWD"
 	local home=$(__escape_slashes "$HOME")
 	path=$(echo "$path" | sed -e "s/^$home/~/")
-	# path="${path//~/~}"
 	local out=""
 	local i=0
 	for ((i = 0; i < ${#path}; i++)); do
@@ -87,7 +110,6 @@ function __calc_ps1_path() {
 
 function __calc_git_branch_component() {
 	git branch &>/dev/null
-
 	if [ $? -eq 0 ]; then
 		__ps1_git_branch_name=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
 	else
@@ -95,7 +117,11 @@ function __calc_git_branch_component() {
 	fi
 }
 
-export PROMPT_COMMAND="__calc_ps1_path && __calc_git_branch_component"
+if [[ -n "${PROMPT_COMMAND:-}" ]]; then
+	PROMPT_COMMAND="__calc_ps1_path && __calc_git_branch_component; $PROMPT_COMMAND"
+else
+	PROMPT_COMMAND="__calc_ps1_path && __calc_git_branch_component"
+fi
 
 function set_ps1() {
 	local user_component="\u${Cyan}@${ColorOff}\h"
@@ -109,6 +135,7 @@ function set_ps1() {
 
 set_ps1
 
+# utility functions
 function swagger_editor() {
 	if [ "$PLATFORM" = "Darwin" ]; then
 		docker ps &>/dev/null
@@ -130,13 +157,7 @@ function swagger_editor() {
 	fi
 }
 
+# fzf display behavior
 export FZF_CTRL_T_OPTS='--height=80% --reverse --info=inline --preview "bat --style=numbers --color=always --theme=base16-256 --line-range :500 {}"'
 export FZF_ALT_C_OPTS='--preview "tree -C {} | head -200"'
 export FZF_TMUX_OPTS='-p 80%,70%'
-
-bind '"^[c":"fzf-cd-widget"'
-
-# aliases
-alias ll="ls -al"
-
-export PATH=$PATH:/Users/sletmoe/.toolbox/bin
