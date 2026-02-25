@@ -23,6 +23,7 @@ if [ -f "$HOME/.bashrc_local" ]; then
 	. "$HOME/.bashrc_local"
 fi
 
+<<<<<<< HEAD
 # path setup
 path_prepend "$HOME/.local/bin"
 path_prepend "$PYENV_ROOT/bin"
@@ -56,6 +57,28 @@ fi
 if [[ $- == *i* ]] && command -v fzf >/dev/null 2>&1; then
 	eval "$(fzf --bash)"
 	bind '"^[c":"fzf-cd-widget"'
+||||||| parent of ffd31fd (Update my dotfiles)
+if [ "$PLATFORM" = "Darwin" ]; then
+	alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+	alias zzz="pmset sleepnow"
+
+	export PATH=/opt/homebrew/bin:$PATH
+
+	if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+		. "$(brew --prefix)/etc/bash_completion"
+	fi
+
+	if [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ]; then
+		. "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
+	fi
+fi
+
+if [ -d "$HOME/.diff-so-fancy" ]; then
+	export PATH="$HOME/.diff-so-fancy:$PATH"
+=======
+if [ -d "$HOME/.diff-so-fancy" ]; then
+	export PATH="$HOME/.diff-so-fancy:$PATH"
+>>>>>>> ffd31fd (Update my dotfiles)
 fi
 
 # pyenv
@@ -161,3 +184,46 @@ function swagger_editor() {
 export FZF_CTRL_T_OPTS='--height=80% --reverse --info=inline --preview "bat --style=numbers --color=always --theme=base16-256 --line-range :500 {}"'
 export FZF_ALT_C_OPTS='--preview "tree -C {} | head -200"'
 export FZF_TMUX_OPTS='-p 80%,70%'
+<<<<<<< HEAD
+||||||| parent of ffd31fd (Update my dotfiles)
+
+bind '"^[c":"fzf-cd-widget"'
+
+# aliases
+alias ll="ls -al"
+
+export PATH=$PATH:/Users/sletmoe/.toolbox/bin
+=======
+
+bind '"^[c":"fzf-cd-widget"'
+
+# aliases
+alias ll="ls -al"
+
+export PATH=$PATH:/Users/sletmoe/.toolbox/bin
+
+if [ "$PLATFORM" = "Darwin" ]; then
+	alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+	alias zzz="pmset sleepnow"
+
+	export PATH=/opt/homebrew/bin:$PATH
+	export PATH=/Users/sletmoe/.local/bin:$PATH
+
+	# Lazy-load bash completion (saves ~0.27s)
+	_load_completions() {
+		BREW_PREFIX="/opt/homebrew"
+		[ -f "$BREW_PREFIX/etc/bash_completion" ] && . "$BREW_PREFIX/etc/bash_completion"
+		[ -f "$BREW_PREFIX/etc/bash_completion.d/git-completion.bash" ] && . "$BREW_PREFIX/etc/bash_completion.d/git-completion.bash"
+		unset -f _load_completions
+	}
+	
+	# Load on first tab completion
+	complete -D -F _load_completions
+fi
+
+# Added by smithy-mcp
+export PATH="/Users/sletmoe/.config/smithy-mcp/mcp-servers:$PATH"
+
+# Added by AIM CLI
+export PATH="/Users/sletmoe/.aim/mcp-servers:$PATH"
+>>>>>>> ffd31fd (Update my dotfiles)

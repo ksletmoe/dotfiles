@@ -1,0 +1,5 @@
+#!/usr/bin/env sed -f
+/^\[user\]/,/^\[/ {
+    s/^\([[:space:]]*email = \).*/\1REDACTED/
+    s/^\([[:space:]]*name = \).*/\1REDACTED/
+}
