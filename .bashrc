@@ -157,6 +157,8 @@ bind '"^[c":"fzf-cd-widget"'
 # aliases
 alias ll="ls -al"
 
+alias vim="nvim"
+
 export PATH=$PATH:/Users/sletmoe/.toolbox/bin
 
 if [ "$PLATFORM" = "Darwin" ]; then
