@@ -24,18 +24,7 @@ if [ -f "$HOME/.bashrc_local" ]; then
 fi
 
 if [ "$PLATFORM" = "Darwin" ]; then
-	alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-	alias zzz="pmset sleepnow"
-
 	export PATH=/opt/homebrew/bin:$PATH
-
-	if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
-		. "$(brew --prefix)/etc/bash_completion"
-	fi
-
-	if [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ]; then
-		. "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
-	fi
 fi
 
 if [ -d "$HOME/.diff-so-fancy" ]; then
@@ -150,13 +139,6 @@ bind '"^[c":"fzf-cd-widget"'
 
 # aliases
 alias ll="ls -al"
-
-
-bind '"^[c":"fzf-cd-widget"'
-
-# aliases
-alias ll="ls -al"
-
 alias vim="nvim"
 
 export PATH=$PATH:/Users/sletmoe/.toolbox/bin
@@ -180,8 +162,6 @@ if [ "$PLATFORM" = "Darwin" ]; then
 	complete -D -F _load_completions
 fi
 
-# Added by smithy-mcp
-export PATH="/Users/sletmoe/.config/smithy-mcp/mcp-servers:$PATH"
 
-# Added by AIM CLI
-export PATH="/Users/sletmoe/.aim/mcp-servers:$PATH"
+# fzf shell integration (key bindings + completions)
+eval "$(fzf --bash)"
