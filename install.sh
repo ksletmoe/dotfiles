@@ -55,3 +55,8 @@ install_dotfile "keymapper.conf" "${HOME}/.config/keymapper.conf"
 echo "Doing misc. environment setup..."
 # do any final environ setup
 git -C "${DOTFILES_DIR}" config filter.redact-gitconfig.clean './.gitconfig-clean'
+
+# install tmux plugin manager
+if [ ! -d "${HOME}/.tmux/plugins/tpm" ]; then
+	git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
+fi
