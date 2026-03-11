@@ -31,3 +31,8 @@ case ":$PATH:" in
 *:/usr/local/sbin:*) ;;
 *) export PATH="/usr/local/sbin:$PATH" ;;
 esac
+
+# Set up mise for runtime management (shims already on PATH via .bashrc)
+if [ -x "$HOME/.local/bin/mise" ]; then
+  eval "$("$HOME/.local/bin/mise" activate bash)"
+fi

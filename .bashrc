@@ -18,17 +18,23 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PYENV_ROOT="$HOME/.pyenv"
 export TMUX_TMPDIR="$HOME/.tmux/tmp"
 
+# mise shims (needed in non-login shells, e.g. tmux panes)
+path_prepend "$HOME/.local/share/mise/shims"
+
+# user paths
+path_prepend "$HOME/.bin"
+
 # local overrides (not in dotfiles)
 if [ -f "$HOME/.bashrc_local" ]; then
 	. "$HOME/.bashrc_local"
 fi
 
 if [ "$PLATFORM" = "Darwin" ]; then
-	export PATH=/opt/homebrew/bin:$PATH
+	path_prepend "/opt/homebrew/bin"
 fi
 
 if [ -d "$HOME/.diff-so-fancy" ]; then
-	export PATH="$HOME/.diff-so-fancy:$PATH"
+	path_prepend "$HOME/.diff-so-fancy"
 fi
 
 # pyenv
@@ -141,14 +147,13 @@ bind '"^[c":"fzf-cd-widget"'
 alias ll="ls -al"
 alias vim="nvim"
 
-export PATH=$PATH:/Users/sletmoe/.toolbox/bin
 
 if [ "$PLATFORM" = "Darwin" ]; then
 	alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 	alias zzz="pmset sleepnow"
 
-	export PATH=/opt/homebrew/bin:$PATH
-	export PATH=/Users/sletmoe/.local/bin:$PATH
+	path_prepend "$HOME/.local/bin"
+	path_prepend "/opt/homebrew/bin"
 
 	# Lazy-load bash completion (saves ~0.27s)
 	_load_completions() {
@@ -162,6 +167,9 @@ if [ "$PLATFORM" = "Darwin" ]; then
 	complete -D -F _load_completions
 fi
 
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+[ -f "$HOME/.local/share/mise/completions.bash" ] && source "$HOME/.local/share/mise/completions.bash"
 
 # fzf shell integration (key bindings + completions)
-eval "$(fzf --bash)"
+command -v fzf >/dev/null 2>&1 && eval "$(fzf --bash)"
