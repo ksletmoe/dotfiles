@@ -154,15 +154,7 @@ if [ "$PLATFORM" = "Darwin" ]; then
 	path_prepend "$HOME/.local/bin"
 	path_prepend "/opt/homebrew/bin"
 
-	# Lazy-load bash completion (saves ~0.27s)
-	_load_completions() {
-		BREW_PREFIX="/opt/homebrew"
-		[[ -r "$BREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$BREW_PREFIX/etc/profile.d/bash_completion.sh"
-		unset -f _load_completions
-	}
-
-	# Load on first tab completion
-	complete -D -F _load_completions
+	[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 fi
 
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
