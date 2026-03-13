@@ -7,8 +7,8 @@ path_prepend() {
 	[ -n "$dir" ] || return 0
 	[ -d "$dir" ] || return 0
 	case ":$PATH:" in
-		*":$dir:"*) ;;
-		*) PATH="$dir:$PATH" ;;
+	*":$dir:"*) ;;
+	*) PATH="$dir:$PATH" ;;
 	esac
 }
 
@@ -43,15 +43,15 @@ if command -v pyenv >/dev/null 2>&1; then
 fi
 
 # prompt colors
-ColorOff="\[\033[0m\]" # Text Reset
-Black="\[\033[0;30m\]"  # Black
-Red="\[\033[0;31m\]"    # Red
-Green="\[\033[0;32m\]"  # Green
-Yellow="\[\033[0;33m\]" # Yellow
-Blue="\[\033[0;34m\]"   # Blue
-Purple="\[\033[0;35m\]" # Purple
-Cyan="\[\033[0;36m\]"   # Cyan
-White="\[\033[0;37m\]"  # White
+ColorOff="\[\033[0m\]"   # Text Reset
+Black="\[\033[0;30m\]"   # Black
+Red="\[\033[0;31m\]"     # Red
+Green="\[\033[0;32m\]"   # Green
+Yellow="\[\033[0;33m\]"  # Yellow
+Blue="\[\033[0;34m\]"    # Blue
+Purple="\[\033[0;35m\]"  # Purple
+Cyan="\[\033[0;36m\]"    # Cyan
+White="\[\033[0;37m\]"   # White
 BBlack="\[\033[1;30m\]"  # Black
 BRed="\[\033[1;31m\]"    # Red
 BGreen="\[\033[1;32m\]"  # Green
@@ -147,7 +147,6 @@ bind '"^[c":"fzf-cd-widget"'
 alias ll="ls -al"
 alias vim="nvim"
 
-
 if [ "$PLATFORM" = "Darwin" ]; then
 	alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 	alias zzz="pmset sleepnow"
@@ -158,8 +157,7 @@ if [ "$PLATFORM" = "Darwin" ]; then
 	# Lazy-load bash completion (saves ~0.27s)
 	_load_completions() {
 		BREW_PREFIX="/opt/homebrew"
-		[ -f "$BREW_PREFIX/etc/bash_completion" ] && . "$BREW_PREFIX/etc/bash_completion"
-		[ -f "$BREW_PREFIX/etc/bash_completion.d/git-completion.bash" ] && . "$BREW_PREFIX/etc/bash_completion.d/git-completion.bash"
+		[[ -r "$BREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$BREW_PREFIX/etc/profile.d/bash_completion.sh"
 		unset -f _load_completions
 	}
 
