@@ -14,6 +14,7 @@ path_prepend() {
 
 # environment
 export EDITOR="nvim"
+command -v bat >/dev/null 2>&1 && export PAGER="bat --paging=always --style=plain"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PYENV_ROOT="$HOME/.pyenv"
 export TMUX_TMPDIR="$HOME/.tmux/tmp"
