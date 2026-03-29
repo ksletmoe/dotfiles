@@ -23,6 +23,7 @@ export TMUX_TMPDIR="$HOME/.tmux/tmp"
 path_prepend "$HOME/.local/share/mise/shims"
 
 # user paths
+path_prepend "$HOME/.local/bin"
 path_prepend "$HOME/.bin"
 
 # local overrides (not in dotfiles)
@@ -152,7 +153,6 @@ if [ "$PLATFORM" = "Darwin" ]; then
 	alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 	alias zzz="pmset sleepnow"
 
-	path_prepend "$HOME/.local/bin"
 	path_prepend "/opt/homebrew/bin"
 
 	[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
